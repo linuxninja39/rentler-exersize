@@ -1,13 +1,16 @@
 using Microsoft.AspNetCore.HttpLogging;
+using Microsoft.EntityFrameworkCore;
 using Rentler.Interview.Api.Configuration;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddHttpLogging(logging =>
-{
-    logging.LoggingFields = HttpLoggingFields.All;
-});
+builder.Services.AddHttpLogging(logging => { logging.LoggingFields = HttpLoggingFields.All; });
+
+
+builder.Services.AddDbContext<FoodContext>(
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("SqlDatabaseConnection"))
+);
 
 Log.Logger = new LoggerConfiguration().ReadFrom
     .Configuration(builder.Configuration)
@@ -17,6 +20,7 @@ builder.WebHost.UseSerilog();
 
 // Add services to the container.
 builder.Services.ConfigureServices(builder.Configuration);
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

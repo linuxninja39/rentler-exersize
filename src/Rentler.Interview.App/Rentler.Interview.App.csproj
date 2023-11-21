@@ -11,4 +11,14 @@
     <ProjectReference Include="..\Rentler.Interview.Lib\Rentler.Interview.Lib.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Microsoft.Extensions.Configuration">
+      <HintPath>..\..\..\..\..\.nuget\packages\microsoft.aspnetcore.app.ref\6.0.24\ref\net6.0\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
+  </ItemGroup>
+
 </Project>
